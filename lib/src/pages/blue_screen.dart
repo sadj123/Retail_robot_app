@@ -143,7 +143,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               margin: EdgeInsets.only(bottom: 10),
               alignment: Alignment.bottomCenter,
               child: Text(
-                "Please pair your device with the robot and press me to continue",
+                "Please pair your device with the robot and tap me to continue",
                 style: TextStyle(
                   color: Theme.of(context).primaryColor,
                   fontSize: 20,
