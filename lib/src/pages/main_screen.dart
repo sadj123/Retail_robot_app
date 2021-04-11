@@ -39,7 +39,9 @@ class _MainScreenState extends State<MainScreen> {
                             width: 120,
                           ),
                         ]),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, 'move');
+                    },
                   )),
             ),
             Padding(
@@ -66,7 +68,9 @@ class _MainScreenState extends State<MainScreen> {
                             width: 120,
                           ),
                         ]),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, 'order');
+                    },
                   )),
             ),
             Padding(
