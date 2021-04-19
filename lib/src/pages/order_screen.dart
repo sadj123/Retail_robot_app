@@ -6,7 +6,7 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-Future<void> scanBarcodeNormal() async {
+/*Future<void> scanBarcodeNormal() async {
   String barcodeScanRes;
   try {
     barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
@@ -15,12 +15,20 @@ Future<void> scanBarcodeNormal() async {
   } on PlatformException {
     barcodeScanRes = 'Failed to get platform version.';
   }
-}
+}*/
 
 class OrderScreen extends StatefulWidget {
   @override
   Order_state createState() => Order_state();
 }
+String _data="";
+// ignore: missing_return
+Future <void> scanBarcodeNormal(e,f) async {
+  return await FlutterBarcodeScanner.scanBarcode("#000000", "Cancel", true, ScanMode.BARCODE)
+      .then((value) => e.add(f[value]));
+}
+
+Map<String,int> barcodemap = {"12345678": 0};
 
 List<int> indices = [
   0,
@@ -181,6 +189,12 @@ class Order_state extends State<OrderScreen> {
                 }),
           ]),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {scanBarcodeNormal(indices,barcodemap); setState(() {
+        });},
+        child: Icon(Icons.add),
+        backgroundColor: Theme.of(context).primaryColor,
       ),
     );
   }
