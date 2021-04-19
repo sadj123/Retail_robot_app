@@ -229,7 +229,11 @@ Widget casilla(BuildContext context, docs, ind) {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Text(docs[ind].data()['price'].toString() + "\$",
+                        child: Text(
+                            NumberFormat.simpleCurrency(
+                                    locale: "eng_US", decimalDigits: 0)
+                                .format(docs[ind].data()['price'])
+                                .toString(),
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontSize: 15,
