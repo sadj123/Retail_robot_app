@@ -58,6 +58,14 @@ flutter:
   assets:
     - assets/imgs/
     - assets/icons/
+    - assets/font/
+  fonts:
+    - family: Font2
+      fonts:
+        - asset: assets/font/Action_Man.ttf
+    - family: Font1
+      fonts: 
+        - asset: assets/font/alpha_echo.ttf 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

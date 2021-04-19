@@ -16,7 +16,7 @@ class _MainScreenState extends State<MainScreen> {
             _customAppBar(context),
             _textsheader(context),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.all(20),
               child: Container(
                   height: 150,
                   child: MaterialButton(
@@ -100,60 +100,6 @@ class _MainScreenState extends State<MainScreen> {
                     onPressed: () {},
                   )),
             ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Container(
-                  height: 150,
-                  child: MaterialButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
-                    ),
-                    elevation: 30,
-                    color: Theme.of(context).primaryColor,
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Text("SOON",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 40,
-                                  fontWeight: FontWeight.bold)),
-                          Image.asset(
-                            'assets/imgs/move.png',
-                            height: 120,
-                            width: 120,
-                          ),
-                        ]),
-                    onPressed: () {},
-                  )),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Container(
-                  height: 150,
-                  child: MaterialButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
-                    ),
-                    elevation: 30,
-                    color: Theme.of(context).primaryColor,
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Text("SOON",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 40,
-                                  fontWeight: FontWeight.bold)),
-                          Image.asset(
-                            'assets/imgs/move.png',
-                            height: 120,
-                            width: 120,
-                          ),
-                        ]),
-                    onPressed: () {},
-                  )),
-            )
           ],
         ),
       ),
@@ -179,14 +125,6 @@ Widget _customAppBar(context) {
         ),
         Row(
           children: <Widget>[
-            IconButton(
-              iconSize: 15,
-              onPressed: () {},
-              icon: SvgPicture.asset(
-                'assets/icons/loupe.svg',
-                color: Colors.lightBlue,
-              ),
-            ),
             IconButton(
               iconSize: 15,
               onPressed: () {
