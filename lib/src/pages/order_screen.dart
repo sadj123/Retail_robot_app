@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
@@ -22,7 +22,41 @@ class OrderScreen extends StatefulWidget {
   Order_state createState() => Order_state();
 }
 
-List<int> indices = [0, 5, 1, 2, 4, 3];
+List<int> indices = [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25,
+  26,
+  27,
+  28,
+  29,
+  30,
+  31,
+  32
+];
 
 class Order_state extends State<OrderScreen> {
   @override
@@ -80,12 +114,16 @@ class Order_state extends State<OrderScreen> {
                               fontWeight: FontWeight.bold, color: Colors.black),
                         ),
                         Text(
-                          indmap
-                              .map((key, value) => MapEntry(
-                                  key, docs[indices[key]].data()["price"]))
-                              .values
-                              .toList()
-                              .fold(0, (p, c) => p + c)
+                          NumberFormat.simpleCurrency(
+                            locale: "en_US",
+                            decimalDigits: 0,
+                          )
+                              .format(indmap
+                                  .map((key, value) => MapEntry(
+                                      key, docs[indices[key]].data()["price"]))
+                                  .values
+                                  .toList()
+                                  .fold(0, (p, c) => p + c))
                               .toString(),
                           style: TextStyle(
                               fontWeight: FontWeight.bold, color: Colors.black),
@@ -115,9 +153,16 @@ class Order_state extends State<OrderScreen> {
                                     Dismissible(
                                         key: UniqueKey(),
                                         background: Container(
-                                          alignment: Alignment.center,
+                                          alignment:
+                                              AlignmentDirectional.centerEnd,
                                           color: Colors.red,
-                                          child: Icon(Icons.delete),
+                                          child: Padding(
+                                            padding: EdgeInsets.only(right: 10),
+                                            child: Icon(
+                                              Icons.delete,
+                                              color: Colors.white,
+                                            ),
+                                          ),
                                         ),
                                         onDismissed: (direction) {
                                           setState(() {
