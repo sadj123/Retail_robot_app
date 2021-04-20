@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 /*Future<void> scanBarcodeNormal() async {
@@ -21,50 +22,62 @@ class OrderScreen extends StatefulWidget {
   @override
   Order_state createState() => Order_state();
 }
-String _data="";
+
 // ignore: missing_return
-Future <void> scanBarcodeNormal(e,f) async {
-  return await FlutterBarcodeScanner.scanBarcode("#000000", "Cancel", true, ScanMode.BARCODE)
-      .then((value) => e.add(f[value]));
+Future<dynamic> scanBarcodeNormal(e, f) async {
+  final i = await FlutterBarcodeScanner.scanBarcode(
+      "#000000", "Cancel", true, ScanMode.BARCODE);
+  print("YO SOY LO LEIDOOOOOOOOOOOOOOOOO!!!!!!!!!!!!!!!:   " + i);
+  return i;
 }
 
-Map<String,int> barcodemap = {"12345678": 0};
+Future<void> scanBarcodeNormal2(e, f) async {
+  final d = await scanBarcodeNormal(e, f);
+  if (d == "-1") {
+    return 0;
+  } else {
+    e.add(f[d]);
+    return 0;
+  }
+}
 
-List<int> indices = [
-  0,
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  7,
-  8,
-  9,
-  10,
-  11,
-  12,
-  13,
-  14,
-  15,
-  16,
-  17,
-  18,
-  19,
-  20,
-  21,
-  22,
-  23,
-  24,
-  25,
-  26,
-  27,
-  28,
-  29,
-  30,
-  31,
-  32
-];
+Map<String, int> barcodemap = {
+  "12345678": 0,
+  "08329742": 1,
+  "08329743": 2,
+  "08329744": 3,
+  "08329745": 4,
+  "08329746": 5,
+  "08329747": 6,
+  "08329748": 7,
+  "08329749": 8,
+  "08329750": 9,
+  "08329751": 10,
+  "08329752": 11,
+  "08329753": 12,
+  "08329754": 13,
+  "08329755": 14,
+  "08329756": 15,
+  "08329757": 16,
+  "08329758": 17,
+  "08329759": 18,
+  "08329760": 19,
+  "08329761": 20,
+  "08329762": 21,
+  "08329774": 22,
+  "08329764": 23,
+  "08329765": 24,
+  "08329766": 25,
+  "08329767": 26,
+  "08329768": 27,
+  "08329769": 28,
+  "08329770": 29,
+  "08329771": 30,
+  "08329772": 31,
+  "08329773": 32
+};
+
+List<int> indices = [];
 
 class Order_state extends State<OrderScreen> {
   @override
@@ -191,8 +204,10 @@ class Order_state extends State<OrderScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {scanBarcodeNormal(indices,barcodemap); setState(() {
-        });},
+        onPressed: () async {
+          await scanBarcodeNormal2(indices, barcodemap);
+          setState(() {});
+        },
         child: Icon(Icons.add),
         backgroundColor: Theme.of(context).primaryColor,
       ),
