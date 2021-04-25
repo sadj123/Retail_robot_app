@@ -31,13 +31,17 @@ Future<dynamic> scanBarcodeNormal(e, f) async {
   return i;
 }
 
-Future<void> scanBarcodeNormal2(e, f) async {
+Future<int> scanBarcodeNormal2(e, f) async {
   final d = await scanBarcodeNormal(e, f);
   if (d == "-1") {
     return 0;
   } else {
-    e.add(f[d]);
-    return 0;
+    if (f.containsKey(d)) {
+      e.add(f[d]);
+      return 0;
+    } else {
+      return 1;
+    }
   }
 }
 
@@ -205,14 +209,72 @@ class Order_state extends State<OrderScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          await scanBarcodeNormal2(indices, barcodemap);
-          setState(() {});
+          final x = await scanBarcodeNormal2(indices, barcodemap);
+          if (x == 0) {
+            setState(() {});
+          } else {
+            no_encontrado(context);
+          }
         },
         child: Icon(Icons.add),
         backgroundColor: Theme.of(context).primaryColor,
       ),
     );
   }
+}
+
+void no_encontrado(BuildContext context) {
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20))),
+          content: Container(
+            height: 400,
+            child: Column(
+              children: [
+                Image.asset(
+                  "assets/imgs/sad.jpg",
+                  height: 180,
+                  width: 200,
+                ),
+                Container(
+                  margin: EdgeInsets.only(bottom: 30),
+                  child: Text(
+                    "Sorry, we can´t find this product in our database",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Container(
+                    width: 200,
+                    height: 60,
+                    child: MaterialButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
+                      ),
+                      elevation: 30,
+                      minWidth: 200,
+                      color: Theme.of(context).primaryColor,
+                      height: 60,
+                      child: Text(
+                        "Continue",
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ))
+              ],
+            ),
+          ),
+        );
+      });
 }
 
 Widget casilla(BuildContext context, docs, ind) {
